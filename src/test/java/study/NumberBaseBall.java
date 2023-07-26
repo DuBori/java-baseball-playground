@@ -9,84 +9,97 @@ import java.util.stream.Collectors;
 public class NumberBaseBall {
 
     public static void main(String[] args) {
-        boolean isFinsh = true;
+        boolean playGameMore = true;
+        Scanner sc = new Scanner(System.in);
         do {
             BaseBallGame();
-            isFinsh = requestAnswerMoreGame();
-        } while (isFinsh);
+            playGameMore = isPlayGameMore(playGameMore, sc);
+        } while (playGameMore);
+
+    }
+
+    private static boolean isPlayGameMore(boolean playGameMore, Scanner sc) {
+        while (true){
+            System.out.println("more Game? yes : 1, no : 2");
+            String input = sc.nextLine();
+            if ("1".equals(input)) {
+                playGameMore = true;
+            }
+            if ("2".equals(input)) {
+                playGameMore = false;
+            }
+            if ("1".equals(input) || "2".equals(input)){
+                break;
+            }
+        }
+        return playGameMore;
     }
 
     private static void BaseBallGame() {
-        List<String> randomNumber = crateRandomNumber();
-        System.out.println(randomNumber);
-        boolean isAnswer = false;
+        List<Integer> randomNumber = crateRandomNumber();
+
         String answer = randomNumber.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining());
         System.out.println("answer = " + answer);
 
-
-        while (true){
-            playGame(randomNumber, isAnswer, answer);
-        }
-
+        playGame(randomNumber, answer);
     }
 
-    private static boolean requestAnswerMoreGame() {
-        System.out.println("you play Game more? yes : 1 / no : 2");
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        if (!"1".equals(s) && "2".equals(s)){
-            System.out.println("input 1 or 2");
-            return false;
+    private static List<Integer> crateRandomNumber() {
+        Random random = new Random();
+        List<Integer> answer = new ArrayList<>();
+
+        for (int x = 0; x < 3; x++) {
+            while (true) {
+                int randomNumber = random.nextInt(10) + 1;
+                if (!answer.contains(randomNumber) && randomNumber <= 10) {
+                    answer.add(randomNumber);
+                    break;
+                }
+            }
         }
-        if ("2".equals(s)) {
-            return false;
-        }
-        return true;
+
+        return answer;
     }
 
-    private static void playGame(List<String> randomNumber, boolean isAnswer, String answer) {
-        while(!isAnswer){
+    private static void playGame(List<Integer> randomNumber, String answer) {
+
+        boolean isAnswer = false;
+
+        while (!isAnswer) {
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
 
             giveHint(input, randomNumber);
 
-            if (answer.equals(input)){
+            if (answer.equals(input)) {
                 System.out.println("finish");
                 isAnswer = true;
             }
         }
+
     }
 
-    private static void giveHint(String input, List<String> answer) {
+    private static void giveHint(String input, List<Integer> answer) {
         int strike = 0;
         int ball = 0;
 
         String[] split = input.split("");
-        for (int i=0; i<split.length; i++) {
-            if (answer.get(i).equals(split[i])) {
-                strike+=1;
+        for (int i = 0; i < split.length; i++) {
+            int inputNumber = Integer.parseInt(split[i]);
+            if (answer.get(i) == inputNumber) {
+                strike += 1;
             }
-            if (!answer.get(i).equals(split[i]) && answer.contains(split[i]) ) {
-                ball +=1;
+            if (answer.get(i) != inputNumber && answer.contains(inputNumber)) {
+                ball += 1;
             }
         }
         if (strike > 0) {
-            System.out.println(strike+"strike");
+            System.out.println(strike + "strike");
         }
         if (ball > 0) {
-            System.out.println(ball+"ball");
+            System.out.println(ball + "ball");
         }
-    }
-
-    private static List<String> crateRandomNumber() {
-        Random random = new Random();
-        List<String> answer = new ArrayList<>();
-        for(int x = 0; x < 3; x++){
-            answer.add(String.valueOf(random.nextInt(10)));
-        }
-        return answer;
     }
 }
