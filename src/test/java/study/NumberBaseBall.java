@@ -9,16 +9,17 @@ import java.util.stream.Collectors;
 public class NumberBaseBall {
 
     public static void main(String[] args) {
-        boolean playGameMore = true;
+        boolean playGameMore;
         Scanner sc = new Scanner(System.in);
         do {
             BaseBallGame();
-            playGameMore = isPlayGameMore(playGameMore, sc);
+            playGameMore = isPlayGameMore(sc);
         } while (playGameMore);
-
+        System.out.println("thanks play the Game");
     }
 
-    private static boolean isPlayGameMore(boolean playGameMore, Scanner sc) {
+    private static boolean isPlayGameMore(Scanner sc) {
+        boolean playGameMore =true;
         while (true){
             System.out.println("more Game? yes : 1, no : 2");
             String input = sc.nextLine();
@@ -31,6 +32,7 @@ public class NumberBaseBall {
             if ("1".equals(input) || "2".equals(input)){
                 break;
             }
+            System.out.println("plz push 1 or 2");
         }
         return playGameMore;
     }
@@ -53,7 +55,7 @@ public class NumberBaseBall {
         for (int x = 0; x < 3; x++) {
             while (true) {
                 int randomNumber = random.nextInt(10) + 1;
-                if (!answer.contains(randomNumber) && randomNumber <= 10) {
+                if (!answer.contains(randomNumber) && randomNumber < 10) {
                     answer.add(randomNumber);
                     break;
                 }
