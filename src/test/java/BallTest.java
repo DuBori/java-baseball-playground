@@ -23,4 +23,6 @@ class BallTest {
         Ball com = new Ball(0, 1);
         assertThat(com.Play(new Ball(0,1))).isEqualTo(BallState.STRIKE);
     }
+
+
 }
