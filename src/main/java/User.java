@@ -3,29 +3,30 @@ import java.util.List;
 import java.util.Scanner;
 
 public class User {
+    private Scanner scanner;
 
     private int count;
 
     private List<Ball> userBalls;
 
+    public User() {
+        scanner = new Scanner(System.in);
+    }
+
     public List<Ball> pickBall() {
-        Scanner scanner = new Scanner(System.in);
         userBalls = new ArrayList<>();
-        System.out.println("input number");
-        while (true) {
+        while (count < 3) {
             String next = scanner.next();
-            if (count < 3 && validateUser(next)) {
+            if (validateUserBall(next)) {
                 userBalls.add(new Ball(count, Integer.parseInt(next)));
+                count++;
             }
-            if (count > 3) {
-                break;
-            }
-            count++;
         }
+        scanner.close();
         return userBalls;
     }
 
-    private boolean validateUser(String next) {
+    private boolean validateUserBall(String next) {
         return BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next));
     }
 

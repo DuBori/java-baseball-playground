@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 public class Ball {
 
     public static final int MAX_NUMBER = 9;

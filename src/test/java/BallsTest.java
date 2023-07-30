@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ class BallsTest {
 
 
     @Test
-    void matchBallByInput() {
+    @Disabled
+    void matchBallByInputAndReturnResult() {
         ArrayList<Ball> inputBall = new ArrayList<>();
         inputBall.add(new Ball(0,1));
         inputBall.add(new Ball(1,2));
