@@ -18,7 +18,7 @@ public class Ball {
 
     private int initNumber(int number) {
         if (number > MAX_NUMBER || number < MIN_NUMBER){
-            new IllegalAccessError("숫자는 1~9 까지 숫자를 입력해 주세요.");
+            new IllegalAccessError("input number 1 to 9 plz");
         }
         return number;
     }
