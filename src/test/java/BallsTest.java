@@ -1,18 +1,36 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BallsTest {
 
+    static Scanner scanner = new Scanner(System.in);
+    static int count =0;
+    public static void main(String[] args) {
+        List<Ball> balls = new ArrayList<>();
+        while (count < 3) {
+            String next = scanner.next();
+            if (BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next))) {
+                balls.add(new Ball(count,Integer.parseInt(next)));
+                count++;
+            }
+        }
+        Balls randomBall = BallUtill.createRandomBall(3);
+        BallResult ballResult = randomBall.matchBalls((ArrayList<Ball>) balls);
+        ballResult.getResult();
+    }
     @Test
     void printToUser() {
         User user = new User();
-        List<Ball> balls = user.pickBall();
-        Balls userBalls = new Balls(balls);
+        Balls balls = user.getBalls();
+        Balls userBalls = new Balls();
         userBalls.getList()
                 .forEach(it -> System.out.println(it.getNumber()));
     }

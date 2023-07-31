@@ -13,12 +13,9 @@ public class Balls {
     }
 
     public Balls(List<Ball> balls) {
-        this.list = checkDuplicate(balls);
+        this.list = balls;
     }
 
-    private List<Ball> checkDuplicate(List<Ball> balls) {
-        return balls;
-    }
 
     public BallResult matchBalls(ArrayList<Ball> inputBall) {
         List<BallState> states = new ArrayList<>();

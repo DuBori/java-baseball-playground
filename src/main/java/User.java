@@ -1,33 +1,18 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class User {
     private Scanner scanner;
 
-    private int count;
+    private Balls userBalls;
 
-    private List<Ball> userBalls;
-
+    public Balls getBalls() {
+        return this.userBalls;
+    }
     public User() {
-        scanner = new Scanner(System.in);
-    }
 
-    public List<Ball> pickBall() {
-        userBalls = new ArrayList<>();
-        while (count < 3) {
-            String next = scanner.next();
-            if (validateUserBall(next)) {
-                userBalls.add(new Ball(count, Integer.parseInt(next)));
-                count++;
-            }
-        }
-        scanner.close();
-        return userBalls;
     }
-
-    private boolean validateUserBall(String next) {
-        return BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next));
+    public User(List<Ball> balls) {
+        userBalls = new Balls(balls);
     }
-
 }

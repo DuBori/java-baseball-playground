@@ -1,9 +1,12 @@
+import java.util.List;
+
 public class Ball {
 
     public static final int MAX_NUMBER = 9;
     public static final int MIN_NUMBER = 1;
     private int index;
     private int  number;
+    private int count;
 
     public int getNumber() {
         return number;
@@ -44,5 +47,18 @@ public class Ball {
         if (obj == null || getClass() != obj.getClass()) return false;
         Ball ball = (Ball) obj;
         return this.index == ball.index && this.number == ball.number;
+    }
+    public void pickBall() {
+       /* while (count < 3) {
+            if (validateUserBall(next)) {
+                userBalls.add(new Ball(count, Integer.parseInt(next)));
+                count++;
+            }
+        }
+        scanner.close();*/
+    }
+
+    private boolean validateUserBall(String next) {
+        return BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next));
     }
 }
