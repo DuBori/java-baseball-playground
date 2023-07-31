@@ -4,6 +4,9 @@ import java.util.Random;
 public class BallUtill {
 
 
+    public static final Random RANDOM = new Random();
+    public static final String COMPUTER = "com";
+
     public static Balls createRandomBall(int size) {
         ArrayList<Integer> list = new ArrayList<>();
         ArrayList<Ball> balls = new ArrayList<>();
@@ -26,16 +29,22 @@ public class BallUtill {
     }
 
     private static int randomNumber() {
-        Random random = new Random();
         int randomNumber =0;
-        while (!rangeNumber(randomNumber)) {
-            randomNumber = random.nextInt(10) + 1;
+        while (!rangeNumber(randomNumber, COMPUTER)) {
+            randomNumber = RANDOM.nextInt(10) + 1;
         }
         return randomNumber;
     }
 
-    public static boolean rangeNumber(int randomNumber) {
-        return randomNumber > 0 && randomNumber < 9;
+    public static boolean rangeNumber(int randomNumber,String COMPUTER) {
+        if (randomNumber > 0 && randomNumber < 9) {
+            return true;
+        }
+        if (COMPUTER != null && "".equals(COMPUTER)) {
+            System.out.println("plz range input number 1 to 9");
+        }
+
+        return false;
     }
 
 
@@ -43,6 +52,7 @@ public class BallUtill {
         try {
             Integer.parseInt(next);
         } catch (Exception e) {
+            System.out.println("plz input number");
             return false;
         }
         return true;

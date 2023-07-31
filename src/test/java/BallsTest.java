@@ -17,7 +17,7 @@ class BallsTest {
         List<Ball> balls = new ArrayList<>();
         while (count < 3) {
             String next = scanner.next();
-            if (BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next))) {
+            if (BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next),null)) {
                 balls.add(new Ball(count,Integer.parseInt(next)));
                 count++;
             }

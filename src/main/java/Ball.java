@@ -48,17 +48,4 @@ public class Ball {
         Ball ball = (Ball) obj;
         return this.index == ball.index && this.number == ball.number;
     }
-    public void pickBall() {
-       /* while (count < 3) {
-            if (validateUserBall(next)) {
-                userBalls.add(new Ball(count, Integer.parseInt(next)));
-                count++;
-            }
-        }
-        scanner.close();*/
-    }
-
-    private boolean validateUserBall(String next) {
-        return BallUtill.isNotNumber(next) && BallUtill.rangeNumber(Integer.parseInt(next));
-    }
 }
