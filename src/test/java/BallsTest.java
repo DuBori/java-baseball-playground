@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,28 +11,35 @@ class BallsTest {
     static Scanner scanner = new Scanner(System.in);
     static int count =0;
     public static void main(String[] args) {
-        List<Ball> balls = new ArrayList<>();
         BallResult ballResult = new BallResult();
         Balls randomBall = BallUtill.createRandomBall(3);
         boolean playGame =true;
         while (playGame) {
-            System.out.println("숫자를 입력해 주세요.");
-            String next = scanner.next();
-            String[] split = next.split("");
-            settingUserBalls(balls, split);
-            if (count > 2) {
-                balls.forEach(it-> System.out.println("it = "+it.getNumber()));
-                ballResult = randomBall.matchBalls((ArrayList<Ball>) balls);
-            }
+            String[] split = playForJustMent();
+            Balls userBall = new Balls(settingUserBalls(split));
 
+            if (count > 2) {
+                ballResult = randomBall.matchBalls((ArrayList<Ball>) userBall.getList());
+            }
             if(ballResult.getResult() == 3 ){
                 playGame = checkUserMind();
             }
-            balls.clear();
-            count = 0;
+            init(userBall);
         }
 
 
+    }
+
+    private static String[] playForJustMent() {
+        System.out.println("숫자를 입력해 주세요.");
+        String next = scanner.next();
+        String[] split = next.split("");
+        return split;
+    }
+
+    private static void init(Balls userBall) {
+        userBall.clearList();
+        count = 0;
     }
 
     private static boolean checkUserMind() {
@@ -48,13 +54,15 @@ class BallsTest {
         return false;
     }
 
-    private static void settingUserBalls(List<Ball> balls, String[] split) {
+    private static ArrayList<Ball> settingUserBalls(String[] split) {
+        ArrayList<Ball> balls = new ArrayList<>();
         for (int i = 0; i < split.length; i++) {
             if (BallUtill.isNotNumber(split[i]) && BallUtill.rangeNumber(Integer.parseInt(split[i]),null)) {
                 balls.add(new Ball(count,Integer.parseInt(split[i])));
                 count++;
             }
         }
+        return balls;
     }
 
     private static boolean playMoreGame(String userInput) {

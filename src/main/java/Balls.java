@@ -25,4 +25,8 @@ public class Balls {
         }
         return new BallResult(states);
     }
+
+    public void clearList() {
+        this.list.clear();
+    }
 }

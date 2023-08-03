@@ -29,10 +29,10 @@ public class BallResult {
             }
         }
         if (strike > 0) {
-            System.out.println(strike + " strike ");
+            System.out.println(strike + " 스트라이크 ");
         }
         if (ball > 0) {
-            System.out.println(ball + " ball");
+            System.out.println(ball + " 볼");
         }
 
         if (ball < 1 && strike < 1) {
