@@ -6,6 +6,9 @@ public class BallResult {
     private int strike;
     private int ball;
 
+    public BallResult() {
+    }
+
     public BallResult(List<BallState> states) {
         data = states;
     }
@@ -14,7 +17,7 @@ public class BallResult {
         return strike;
     }
 
-    public void getResult() {
+    public int getResult() {
 
         for (int i = 0; i < data.size(); i++) {
             BallState ballState = data.get(i);
@@ -26,7 +29,7 @@ public class BallResult {
             }
         }
         if (strike > 0) {
-            System.out.print(strike + " strike ");
+            System.out.println(strike + " strike ");
         }
         if (ball > 0) {
             System.out.println(ball + " ball");
@@ -35,6 +38,7 @@ public class BallResult {
         if (ball < 1 && strike < 1) {
             System.out.println("noting");
         }
+        return strike;
     }
 
 }

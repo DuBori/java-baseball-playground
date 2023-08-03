@@ -21,7 +21,7 @@ public class Balls {
         List<BallState> states = new ArrayList<>();
         for (int i=0; i < list.size(); i++) {
             Ball ball = list.get(i);
-            states.add(ball.Play(inputBall.get(i)));
+            states.add(ball.Play(inputBall));
         }
         return new BallResult(states);
     }

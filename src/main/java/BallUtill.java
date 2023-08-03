@@ -21,6 +21,7 @@ public class BallUtill {
         while (true){
             int randomNum = randomNumber();
             if (!list.contains(randomNum)) {
+                System.out.println("randomNum = " + randomNum);
                 list.add(randomNum);
                 balls.add(new Ball(index, randomNum));
                 break;
@@ -33,6 +34,7 @@ public class BallUtill {
         while (!rangeNumber(randomNumber, COMPUTER)) {
             randomNumber = RANDOM.nextInt(10) + 1;
         }
+
         return randomNumber;
     }
 
