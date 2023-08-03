@@ -10,10 +10,11 @@ class BallsTest {
 
     static Scanner scanner = new Scanner(System.in);
     static int count =0;
+
     public static void main(String[] args) {
         BallResult ballResult = new BallResult();
         Balls randomBall = BallUtill.createRandomBall(3);
-        boolean playGame =true;
+        boolean playGame = true;
         while (playGame) {
             String[] split = playForJustMent();
             Balls userBall = new Balls(settingUserBalls(split));
@@ -21,13 +22,11 @@ class BallsTest {
             if (count > 2) {
                 ballResult = randomBall.matchBalls((ArrayList<Ball>) userBall.getList());
             }
-            if(ballResult.getResult() == 3 ){
+            if (ballResult.getResult() == 3) {
                 playGame = checkUserMind();
             }
             init(userBall);
         }
-
-
     }
 
     private static String[] playForJustMent() {
